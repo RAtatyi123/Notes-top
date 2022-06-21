@@ -3,6 +3,7 @@ package com.mp.notes
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
@@ -21,6 +22,7 @@ import com.mp.notes.model.note
 import com.mp.notes.sharedPref.SharedPrefHandler
 import com.mp.notesapp.NoteAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_notes_add.*
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
@@ -37,10 +39,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
+        
+
+
+
         val button_inf: TextView = findViewById(R.id.button_inf)
 
         button_inf.setOnClickListener {
-            val intent = Intent(this@MainActivity, AboutActivity3::class.java)
+            val intent = Intent(this@MainActivity, MenuActivity::class.java)
             startActivity(intent)
         }
 
@@ -73,6 +82,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Add Notes", Toast.LENGTH_LONG).show()
         }
 
+
+
         LockBtnSetting.setOnClickListener{
 
             var intent = Intent(this, AddNotes::class.java)
@@ -104,6 +115,9 @@ class MainActivity : AppCompatActivity() {
             recycler_view.layoutManager = GridLayoutManager(this, 2)
         }
         recycler_view.setHasFixedSize(true)
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -142,43 +156,6 @@ class MainActivity : AppCompatActivity() {
                     defaultLayout = 0
                 }
             }
-//            R.id.pinSetting -> {
-//                if(sharedPref.getPin() != 999999 && sharedPref.getPin() != -1){
-//                    //pin is there
-//                    var intent = Intent(this, PinReset::class.java)
-//                    intent.putExtra("reset","true")
-//                    startActivity(intent)
-//                    finish()
-//                }
-//                else{
-//                    var intent = Intent(this, Pin::class.java)
-//                    startActivity(intent)
-//                    finish()
-//                }
-//            }
-//            R.id.pinOnOff -> {
-//                if(sharedPref.getPin() != 999999 && sharedPref.getPin() != -1 && !sharedPref.getAccess()){
-//                    //pin is there
-//                    //Switch Icon here and show toast saying pin is turned on
-//                    sharedPref.setAccess(true)
-//                    item.setIcon(R.drawable.pin_enable)
-//                    Toast.makeText(this, "Pin Enabled", Toast.LENGTH_LONG).show()
-//                }
-//                else if(sharedPref.getPin() != 999999 && sharedPref.getPin() != -1 && sharedPref.getAccess()){
-//                    sharedPref.setAccess(false)
-//                    item.setIcon(R.drawable.pin_disable)
-//                    Toast.makeText(this, "Pin Disabled", Toast.LENGTH_LONG).show()
-//                }
-//                else{
-//                    Toast.makeText(this, "Setup pin from settings menu at the top", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//            R.id.deletePin -> {
-//                sharedPref.deletePin()
-//                optionsMenu.findItem(R.id.pinOnOff).setIcon(R.drawable.pin_disable)
-//                optionsMenu.findItem(R.id.pinSetting).setTitle("Setup Pin")
-//                Toast.makeText(this, "Pin Deleted", Toast.LENGTH_LONG).show()
-//            }
         }
         return super.onOptionsItemSelected(item)
     }
